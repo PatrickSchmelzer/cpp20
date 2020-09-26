@@ -5,6 +5,8 @@
 #include <span>
 #include <string>
 
+namespace util {
+
 template<typename T>
 void getAttribute(T& t, std::span<uint8_t> data, uint8_t& offset) {
 	uint32_t attribute = 0U;
@@ -21,6 +23,8 @@ std::tuple<Args...> getAttributes(std::span<uint8_t> data) {
 	uint8_t offset = 0U;
 	std::apply([&](auto&... ps) {((getAttribute(ps, data, offset)), ...); }, attributes);
 	return attributes;
+}
+
 }
 // usage
 //int main() {
